@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Admin - Mundo dos Achadinhos</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="loginBox">
+    <h2>🔐 Login do Admin</h2>
+
+    <input type="password" id="senha" placeholder="Digite a senha">
+    <button onclick="fazerLogin()">Entrar</button>
+
+    <p id="erro" style="color:red;"></p>
+  </div>
+
+  <!-- PAINEL ADMIN -->
+  <div id="painel" style="display:none;">
+
+    <h1>🛍️ Painel de Promoções</h1>
+
+    <input type="text" id="nome" placeholder="Nome do produto">
+    <input type="text" id="preco" placeholder="Preço (ex: 99,90)">
+    <input type="text" id="imagem" placeholder="URL da imagem">
+    <input type="text" id="link" placeholder="Link de afiliado">
+
+    <select id="categoria">
+      <option>Oferta do Dia</option>
+      <option>Eletrônicos</option>
+      <option>Casa</option>
+      <option>Moda</option>
+      <option>Beleza</option>
+      <option>Brinquedos</option>
+      <option>Pet</option>
+    </select>
+
+    <button onclick="adicionarProdutoAdmin()">Adicionar Promoção</button>
+
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    const senhaCorreta = "1234";
+
+    function fazerLogin() {
+      const senha = document.getElementById("senha").value;
+
+      if (senha === senhaCorreta) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("painel").style.display = "block";
+      } else {
+        document.getElementById("erro").innerText = "Senha incorreta!";
+      }
+    }
+
+    function adicionarProdutoAdmin() {
+      const nome = document.getElementById("nome").value;
+      const preco = document.getElementById("preco").value;
+      const imagem = document.getElementById("imagem").value;
+      const link = document.getElementById("link").value;
+      const categoria = document.getElementById("categoria").value;
+
+      if (!nome || !preco || !imagem || !link) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      adicionarProduto(nome, preco, imagem, link, categoria);
+
+      alert("Produto adicionado com sucesso!");
+    }
+  </script>
+
+</body>
+</html>
